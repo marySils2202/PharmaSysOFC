@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Clientes.html" />
+    <Content Remove="wwwroot\Compras.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Clientes.html" />
+    <None Include="wwwroot\Compras.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PharmaSysAPI\PharmaSysAPI.csproj" />
+  </ItemGroup>
+
+</Project>
