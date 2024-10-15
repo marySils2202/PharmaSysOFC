@@ -2,68 +2,69 @@
 
 btnGuardar.addEventListener('click',guardarCompra)  {
    
-    //if (!validarFormulario()) {
-    //    e.preventDefault();
-    //    return;
-    //}
+    if (!validarFormulario()) {
+        e.preventDefault();
+        
+    }
+    else
     guardarCompra();
 });
 
-//function validarFormulario() {
+function validarFormulario() {
   
-//    const numeroVenta = document.getElementById('numeroVenta').value.trim();
-//    const idProveedor = document.getElementById('inputproveedor').value.trim();
-//    const telefono = document.getElementById('telefono').value.trim();
-//    const fechaCompra = document.getElementById('fecha').value.trim();
-//    const idProducto = document.getElementById('producto').value.trim();
-//    const precioCompra = document.getElementById('precio').value.trim();
-//    const cantidadCompra = document.getElementById('cantidad').value.trim();
+    const numeroVenta = document.getElementById('numeroVenta').value.trim();
+    const idProveedor = document.getElementById('inputproveedor').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const fechaCompra = document.getElementById('fecha').value.trim();
+    const idProducto = document.getElementById('producto').value.trim();
+    const precioCompra = document.getElementById('precio').value.trim();
+    const cantidadCompra = document.getElementById('cantidad').value.trim();
 
     
-//    if (!numeroVenta) {
-//        alert("El número de compra es obligatorio.");
-//        return false;
-//    }
+    if (!numeroVenta) {
+        alert("El número de compra es obligatorio.");
+        return false;
+    }
 
   
-//    if (!idProveedor) {
-//        alert("Debe seleccionar un proveedor.");
-//        return false;
-//    }
+    if (!idProveedor) {
+        alert("Debe seleccionar un proveedor.");
+        return false;
+    }
 
     
-//    const telefonoRegex = /^[0-9]{8}$/; 
-//    if (!telefonoRegex.test(telefono)) {
-//        alert("El número de teléfono debe tener 8 dígitos.");
-//        return false;
-//    }
+    const telefonoRegex = /^[0-9]{8}$/; 
+    if (!telefonoRegex.test(telefono)) {
+        alert("El número de teléfono debe tener 8 dígitos.");
+        return false;
+    }
 
-//    if (!fechaCompra) {
-//        alert("Debe seleccionar una fecha.");
-//        return false;
-//    }
+    if (!fechaCompra) {
+        alert("Debe seleccionar una fecha.");
+        return false;
+    }
 
     
-//    if (!idProducto) {
-//        alert("Debe ingresar un producto.");
-//        return false;
-//    }
+    if (!idProducto) {
+        alert("Debe ingresar un producto.");
+        return false;
+    }
 
    
-//    if (!precioCompra || isNaN(precioCompra) || parseFloat(precioCompra) <= 0) {
-//        alert("El precio debe ser un número positivo.");
-//        return false;
-//    }
+    if (!precioCompra || isNaN(precioCompra) || parseFloat(precioCompra) <= 0) {
+        alert("El precio debe ser un número positivo.");
+        return false;
+    }
 
     
-//    if (!cantidadCompra || isNaN(cantidadCompra) || parseInt(cantidadCompra) <= 0) {
-//        alert("La cantidad debe ser un número positivo.");
-//        return false;
-//    }
+    if (!cantidadCompra || isNaN(cantidadCompra) || parseInt(cantidadCompra) <= 0) {
+        alert("La cantidad debe ser un número positivo.");
+        return false;
+    }
 
     
-//    return true;
-//}
+    return true;
+}
 
 function guardarCompra() {
     const idProveedor = document.getElementById('inputproveedor').value;

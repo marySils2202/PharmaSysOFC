@@ -147,10 +147,10 @@ namespace PharmaSysAPI.Controllers
                     connection.Open();
                     using (var cmd = new SqlCommand("sp_guardar_Cliente", connection))
                     {
-                        cmd.Parameters.AddWithValue("NombreCliente", objeto.NombreCliente);
-                        cmd.Parameters.AddWithValue("CedulaCliente", objeto.CedulaCliente);
-                        cmd.Parameters.AddWithValue("TelefonoCliente", objeto.TelefonoCliente);
-                        cmd.Parameters.AddWithValue("DireccionCliente", objeto.DireccionCliente);
+                        cmd.Parameters.AddWithValue("nombre", objeto.NombreCliente);
+                        cmd.Parameters.AddWithValue("cedula", objeto.CedulaCliente);
+                        cmd.Parameters.AddWithValue("telefono", objeto.TelefonoCliente);
+                        cmd.Parameters.AddWithValue("direccion", objeto.DireccionCliente);
                         cmd.Parameters.AddWithValue("tipoCliente", objeto.TipoCliente);
 
                         cmd.CommandType = CommandType.StoredProcedure;

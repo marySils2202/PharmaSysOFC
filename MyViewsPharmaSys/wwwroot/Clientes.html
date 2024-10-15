@@ -19,9 +19,23 @@
 
         <div class="container-fluid cont">
             <div class="row">
-                <div class="col-md-8 order-2 order-md-1 tabla">
-                    <section class="busqueda">
-                        <!-- <label for="busqueda">Buscar por Nombre:</label> -->
+                <!-- Columna de la tabla -->
+                <div class="col-md-8 order-2 order-md-1">
+                    <!-- Botones y búsqueda -->
+                    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
+                        <!-- Botones -->
+                        <div class="botones d-flex justify-content-between mt-3 mt-md-0">
+                            <button class="btn mx-1">
+                                <i class="fas fa-circle-plus" id="btnnuevo"></i> Nuevo
+                            </button>
+                            <button class="btn mx-1">
+                                <i class="fas fa-pen-to-square" id="btneditar"></i> Editar
+                            </button>
+                            <button class="btn mx-1">
+                                <i class="fas fa-trash" id="btneliminar"></i> Eliminar
+                            </button>
+                        </div>
+                        <!-- Campo de búsqueda -->
                         <section class="busqueda d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <div class="input-group mb-3 w-100 search-container">
                                 <input type="text" class="form-control" id="txtbusqueda" placeholder="Buscar por Nombre">
@@ -29,20 +43,61 @@
                                     <i class="fas fa-search" id="btnbusqueda"></i>
                                 </button>
                             </div>
-
-                            <div class="botones d-flex justify-content-between mt-3 mt-md-0">
-                                <button class="btn mx-1">
-                                    <i class="fas fa-circle-plus" id="btnnuevo"></i> Nuevo
-                                </button>
-                                <button class="btn mx-1">
-                                    <i class="fas fa-pen-to-square" id="btneditar"></i> Editar
-                                </button>
-                                <button class="btn mx-1">
-                                    <i class="fas fa-trash" id="btneliminar"></i> Eliminar
-                                </button>
-                            </div>
                         </section>
-                    </section>
+
+                    </div>
+                    <!-- Tabla -->
+                    <table class="table table-striped" id="tablaClientes">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cédula</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Tipo Cliente</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <!-- Columna de los datos del cliente -->
+                <div class="col-md-4 columna order-1 order-md-2">
+                    <div class="container-fluid text-center datos">Datos del Cliente</div>
+
+                    <input type="hidden" id="idCliente" />
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="inputnombre" class="form-label mr-2">Nombre</label>
+                        <input type="text" class="form-control flex-grow-1" id="inputnombre">
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="inputtelefono" class="form-label mr-2">Teléfono</label>
+                        <input type="text" class="form-control flex-grow-1" id="inputtelefono">
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="inputcedula" class="form-label mr-2">Cédula</label>
+                        <input type="text" class="form-control flex-grow-1" id="inputcedula">
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="inputdireccion" class="form-label mr-2">Dirección</label>
+                        <input type="text" class="form-control flex-grow-1" id="inputdireccion">
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="tipocliente">Tipo Cliente</label>
+                        <select name="tipocliente" id="cbcliente" class="flex-grow-1">
+                            <option></option>
+                            <option value="clientefijo">Cliente Fijo</option>
+                            <option value="clienteesporadico">Cliente Esporádico</option>
+                        </select><br>
+                    </div>
+
+                    <!--Boton de guardar-->
 
                     <div class="form-group">
                         <button class="btn d-flex justify-content-center position-relative" id="btnGuardar">
@@ -50,58 +105,10 @@
                             <i class="fas fa-circle-check position-absolute start-0 ms-2"></i>
                         </button>
                     </div>
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Cédula</th>
-                                <th scope="col">Teléfono</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table> -
-
-
-                    <div class="col-md-4 columna order-1 order-md-2">
-                        <div class="container-fluid text-center datos">Datos del Cliente</div>
-
-                        <div class="form-group d-flex align-items-center">
-                            <label for="inputnombre" class="form-label mr-2">Nombre</label>
-                            <input type="text" class="form-control flex-grow-1" id="inputnombre">
-                        </div>
-
-                        <div class="form-group d-flex align-items-center">
-                            <label for="inputtelefono" class="form-label mr-2">Teléfono</label>
-                            <input type="text" class="form-control flex-grow-1" id="inputtelefono">
-                        </div>
-
-                        <div class="form-group d-flex align-items-center">
-                            <label for="inputcedula" class="form-label mr-2">Cédula</label>
-                            <input type="text" class="form-control flex-grow-1" id="inputcedula">
-                        </div>
-
-                        <div class="form-group d-flex align-items-center">
-                            <label for="inputdireccion" class="form-label mr-2">Dirección</label>
-                            <input type="text" class="form-control flex-grow-1" id="inputdireccion">
-                        </div>
-
-                        <div class="form-group d-flex align-items-center">
-                            <label for="tipocliente">Tipo Cliente</label>
-                            <select name="tipocliente" id="cbcliente" class="flex-grow-1">
-                                <option></option>
-                                <option value="clientefijo">Cliente Fijo</option>
-                                <option value="clienteesporadico">Cliente Esporádico</option>
-                            </select><br>
-                        </div>
-
-
-                    </div>
                 </div>
             </div>
         </div>
+
     </div>
     <script src="js/Clientes.js"></script>
 </body>
