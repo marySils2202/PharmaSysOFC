@@ -89,13 +89,13 @@ function eliminarCliente() {
     }
 
     // Realizar la solicitud para eliminar el cliente
-    fetch(https://localhost:7266/api/Clientes/Eliminar/${idCliente}, {
+    fetch('https://localhost:7266/api/Clientes/Eliminar/${idCliente}', {
         method: 'DELETE',
         headers: {
         'Content-Type': 'application/json',
     }
     })
-        .then(response => response.json())
+    .then(response => response.json())
     .then(data => {
         if (data.mensaje === "Eliminado") {
             alert("Cliente eliminado correctamente.");
@@ -110,7 +110,8 @@ function eliminarCliente() {
 }
 
 
-// Función para cargar la lista de clientes desde la API
+
+
 function cargarClientes() {
     fetch('https://localhost:7266/api/Clientes/Lista')
         .then(response => response.json())

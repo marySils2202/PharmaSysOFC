@@ -110,6 +110,66 @@ namespace PharmaSysAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = $"Error: {error.Message}", response = (object)null });
             }
         }
+
+
+        [HttpGet]
+        [Route("Obtener/{nombreCliente}")]
+        public IActionResult Obtener(string nombreCliente)
+        {
+            List<Cliente> Clientes = new List<Cliente>();  
+
+            try
+            {
+                // Establecer conexión a la base de datos
+                using (var connection = new SqlConnection(cadenaSQL))
+                {
+                    connection.Open();
+                    // Usar el procedimiento almacenado sp_lista_Clientes
+                    using (var cmd = new SqlCommand("sp_buscar_Clientes", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Pasar el parámetro nombreCliente al procedimiento almacenado
+                        cmd.Parameters.AddWithValue("@nombreCliente", nombreCliente);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            // Leer los resultados del procedimiento almacenado
+                            while (reader.Read())
+                            {
+                                Clientes.Add(new Cliente()
+                                {
+                                    IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente")),
+                                    NombreCliente = reader.GetString(reader.GetOrdinal("NombreCliente")),
+                                    CedulaCliente = reader.GetString(reader.GetOrdinal("CédulaCliente")),
+                                    TelefonoCliente = reader.GetInt32(reader.GetOrdinal("TeléfonoCliente")),
+                                    DireccionCliente = reader.GetString(reader.GetOrdinal("DirecciónCliente")),
+                                    TipoCliente = reader.GetString(reader.GetOrdinal("TipoCliente"))
+                                });
+                            }
+                        }
+                    }
+                }
+
+                // Verificar si se encontraron clientes
+                if (Clientes.Count > 0)
+                {
+                    return Ok(new { mensaje = "OK", response = Clientes });
+                }
+                else
+                {
+                    return NotFound(new { mensaje = "Clientes no encontrados", response = (object)null });
+                }
+            }
+            catch (Exception error)
+            {
+                // Manejo de errores
+                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = $"Error: {error.Message}", response = (object)null });
+            }
+        }
+
+
+
+
         [HttpPost]
         [Route("Guardar")]
         public IActionResult Guardar([FromBody] Cliente objeto)
@@ -147,10 +207,10 @@ namespace PharmaSysAPI.Controllers
                     connection.Open();
                     using (var cmd = new SqlCommand("sp_guardar_Cliente", connection))
                     {
-                        cmd.Parameters.AddWithValue("NombreCliente", objeto.NombreCliente);
-                        cmd.Parameters.AddWithValue("CedulaCliente", objeto.CedulaCliente);
-                        cmd.Parameters.AddWithValue("TelefonoCliente", objeto.TelefonoCliente);
-                        cmd.Parameters.AddWithValue("DireccionCliente", objeto.DireccionCliente);
+                        cmd.Parameters.AddWithValue("nombre", objeto.NombreCliente);
+                        cmd.Parameters.AddWithValue("cedula", objeto.CedulaCliente);
+                        cmd.Parameters.AddWithValue("telefono", objeto.TelefonoCliente);
+                        cmd.Parameters.AddWithValue("direccion", objeto.DireccionCliente);
                         cmd.Parameters.AddWithValue("tipoCliente", objeto.TipoCliente);
 
                         cmd.CommandType = CommandType.StoredProcedure;
