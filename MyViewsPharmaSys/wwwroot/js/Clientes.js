@@ -34,7 +34,7 @@ function guardarCliente() {
     if (!ValidarCampos()) return;
 
     if (idCliente) {
-        fetch('https://localhost:5121/api/Clientes/Editar', {
+        fetch('https://localhost:7266/api/Clientes/Editar', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ function guardarCliente() {
             })
             .catch(error => console.error('Error:', error));
     } else {
-        fetch('https://localhost:5121/api/Clientes/Guardar', {
+        fetch('https://localhost:7266/api/Clientes/Guardar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ function guardarCliente() {
             .then(data => {
                 if (data.mensaje === "Guardado") {
                     alert("Cliente guardado correctamente");
-                    cargarClientes(); 
+                    cargarClientes(); //actualiza
                     limpiarCampos();
                 } else {
                     console.error(data.mensaje);
@@ -89,14 +89,13 @@ function eliminarCliente() {
     }
 
     // Realizar la solicitud para eliminar el cliente
-    fetch('https://localhost:5121/api/Clientes/Eliminar/${idCliente}'), {
-
+    fetch('https://localhost:7266/api/Clientes/Eliminar/${idCliente}', {
         method: 'DELETE',
         headers: {
         'Content-Type': 'application/json',
     }
     })
-        .then(response => response.json())
+    .then(response => response.json())
     .then(data => {
         if (data.mensaje === "Eliminado") {
             alert("Cliente eliminado correctamente.");
@@ -111,9 +110,10 @@ function eliminarCliente() {
 }
 
 
-// Función para cargar la lista de clientes desde la API
+
+
 function cargarClientes() {
-    fetch('https://localhost:5121/api/Clientes/Lista')
+    fetch('https://localhost:7266/api/Clientes/Lista')
         .then(response => response.json())
         .then(data => {
             if (data.mensaje === "OK") {
